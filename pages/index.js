@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home({ environmentName }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -13,6 +13,8 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+
+        <h2>This is the {environmentName} Server</h2>
 
         <p className={styles.description}>
           Get started by editing{' '}
@@ -62,4 +64,12 @@ export default function Home() {
       </footer>
     </div>
   )
+} 
+
+export function getStaticProps(context) {
+  return {
+    props: {
+      environmentName: process.env.ENVIRONMENT_NAME 
+    }
+  }
 }

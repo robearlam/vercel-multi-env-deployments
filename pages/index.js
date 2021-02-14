@@ -69,7 +69,9 @@ export default function Home({ environmentName }) {
 export function getStaticProps(context) {
   return {
     props: {
-      environmentName: process.env.ENVIRONMENT_NAME 
+      environmentName: process.env.VERCEL_GIT_COMMIT_REF === 'staging'
+                          ? "Staging"
+                          : process.env.ENVIRONMENT_NAME 
     }
   }
 }
